@@ -1,4 +1,4 @@
-var ImagesInc_GlobalData = (function() {
+var ImagesInc_GlobalData = (function(module) {
     var headerContainerDef = {
         sectionHTML: '<div class="logo_titleClass" >' +
         '<a href=""><img src="img/ImagesIncLogo.png" alt="Company Logo" style="max-height:100%;"></a>' +
@@ -19,12 +19,14 @@ var ImagesInc_GlobalData = (function() {
         '</div>' + '<div>' + '<a href="#">Support</a>' +
         '</div>'
     };
-    return {
-        getHeaderHTMLTxt: function() {
-            return headerContainerDef.sectionHTML;
-        },
-        getFooterHTMLTxt: function() {
-            return footerContainerDef.sectionHTML;
-        }
+
+    module.getHeaderHTMLTxt = function() {
+        return headerContainerDef.sectionHTML;
     };
-})();
+
+    module.getFooterHTMLTxt = function() {
+        return footerContainerDef.sectionHTML;
+    };
+
+    return module;
+})(ImagesInc_GlobalData || {}); //loose augmentation mean the ability to create or augment our module in a non-strict order

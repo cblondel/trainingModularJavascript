@@ -1,9 +1,11 @@
-/** This module was responsible for storing and caching application-level data.
+/**
+ * ImagesInc_GlobalData
+ * This module was responsible for storing and caching application-level data.
  * Module augmentation allows us to do just that in a very robust way. As the name
  * implies, this concept is about adding functionality (properties) to the original
  * module, without changing the original module's code directly.
  * **/
-var GlobalData = (function() {
+var ImagesInc_GlobalData = (function() {
     var headerContainerDef = {
         sectionHTML: '<div class="logo_titleClass" >' +
         '<a href=""><img src="img/ImagesIncLogo.png" alt="Company Logo" style="max-height:100%;"></a>' +
@@ -34,7 +36,7 @@ var GlobalData = (function() {
     };
 })();
 
-var PageUpdater = (function() {
+var ImagesInc_PageUpdater = (function() {
 
     //module private functions
     var insertHTMLText = function(containerID, newStructure) {
@@ -53,18 +55,18 @@ var PageUpdater = (function() {
         },
         updateElementClass: function(elmeID, className) {
             if(!className) {
-                LoggingHandler.logError('No class name has been provided, exiting module !');
+                ImagesInc_LoggingHandler.logError('No class name has been provided, exiting module !');
             }
             applyClassToElement(elmeID, className);
         }
     }
 })();
 
-PageUpdater.updateElement('headerContainer', GlobalData.getHeaderHTMLTxt());
-PageUpdater.updateElement('footerContainer', GlobalData.getFooterHTMLTxt());
+ImagesInc_PageUpdater.updateElement('headerContainer', ImagesInc_GlobalData.getHeaderHTMLTxt());
+ImagesInc_PageUpdater.updateElement('footerContainer', ImagesInc_GlobalData.getFooterHTMLTxt());
 
 /** Logginghandler use module pattern and return a named interface **/
-var LoggingHandler = (function() {
+var ImagesInc_LoggingHandler = (function() {
     //private variables
     var defaultInfoMessage = 'Logging\'s core handler';
     var theInterface = {};
@@ -86,4 +88,4 @@ var LoggingHandler = (function() {
 
 })();
 
-LoggingHandler.lofInfo();
+ImagesInc_LoggingHandler.lofInfo();
