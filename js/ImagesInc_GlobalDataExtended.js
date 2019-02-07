@@ -1,7 +1,7 @@
 (function(originalModule) {
     if(!originalModule) {
         ImagesInc_LoggingHandler.logError('orginal ImagesInc_GlobalData was not found to be augmented');
-        return fals;
+        return false;
     }
 
     //object definition for the index.html content area
@@ -19,6 +19,4 @@
     };
 
     return originalModule;
-})(ImagesInc_GlobalData);
-
-ImagesInc_PageUpdater.updateElement('mainPageContainer',ImagesInc_GlobalData.getContentAreaHTMLTxt());
+})(ImagesInc_GlobalData); //tight augmentation

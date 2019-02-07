@@ -62,9 +62,6 @@ var ImagesInc_PageUpdater = (function() {
     }
 })();
 
-ImagesInc_PageUpdater.updateElement('headerContainer', ImagesInc_GlobalData.getHeaderHTMLTxt());
-ImagesInc_PageUpdater.updateElement('footerContainer', ImagesInc_GlobalData.getFooterHTMLTxt());
-
 /** Logginghandler use module pattern and return a named interface **/
 var ImagesInc_LoggingHandler = (function() {
     //private variables
@@ -88,4 +85,45 @@ var ImagesInc_LoggingHandler = (function() {
 
 })();
 
-ImagesInc_LoggingHandler.lofInfo();
+var ImagesInc_Utilities = (function() {
+
+    var clone = function clone (deep) {
+        var cloneObj = Object.create(Object.getPrototypeOf(this));
+
+        Object.getOwnPropertyNames(this).forEach(function(propKey) {
+           if(!deep) {
+               cloneObj[propKey] = this[propKey];
+           } else if (typeof this[propKey] == 'object') {
+               cloneObj[propKey] = this[propKey].clone(true);
+           } else {
+               cloneObj[propKey] = this[propKey];
+           }
+        }, this);
+
+        return cloneObj;
+    };
+
+    (function() {
+       Object.prototype.clone = clone;
+    })();
+})();
+
+var TestModule = (function() {
+    var privateTestValue = "Test for cloning, this property is hidden";
+    return {
+        publicTestValue: privateTestValue +
+        " but now showing it publicly",
+        testFunc: function() {
+            var anotherTest = "This property will be cloned";
+            return anotherTest;
+        },
+        getPrivateValue: function() {
+            return privateTestValue;
+        },
+        changePrivateVar: function() {
+            privateTestValue = "the private value has been changed";
+            return privateTestValue;
+        },
+        testArray: [1, 2, 3]
+    };
+})();
